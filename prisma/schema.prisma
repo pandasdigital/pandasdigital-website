@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Customer {
+  id            Int            @id @default(autoincrement())
+  name          String
+  businessName  String?
+  email         String?
+  phone         String?
+  status        String         @default("Active")
+  industry      String?
+  notes         String?
+  birthday      DateTime?
+  createdAt     DateTime       @default(now())
+  projects      Project[]
+  subscriptions Subscription[]
+  reminders     Reminder[]
+  invoices      Invoice[]
+}
+
+model Project {
+  id            Int        @id @default(autoincrement())
+  name          String
+  type          String
+  status        String     @default("In Progress")
+  value         Float      @default(0)
+  startDate     DateTime?
+  description   String?
+  showOnWebsite Boolean    @default(false)
+  productUsed   String?
+  customerId    Int
+  customer      Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  createdAt     DateTime   @default(now())
+}
+
+model Subscription {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String
+  renewalDate DateTime
+  cost        Float     @default(0)
+  autoRenew   Boolean   @default(false)
+  notes       String?
+  customerId  Int?
+  customer    Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+}
+
+model Reminder {
+  id         Int       @id @default(autoincrement())
+  title      String
+  dueDate    DateTime
+  priority   String    @default("Medium")
+  notes      String?
+  done       Boolean   @default(false)
+  customerId Int?
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  createdAt  DateTime  @default(now())
+}
+
+model Inquiry {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  service   String?
+  budget    String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id                  Int     @id @default(1)
+  companyName         String  @default("Pandas Digital")
+  tagline             String  @default("Build · Innovate · Grow")
+  email               String  @default("hello@pandasdigital.lk")
+  phone               String  @default("+94 77 000 0000")
+  whatsapp            String  @default("+94770000000")
+  address             String  @default("Kurunegala, Sri Lanka")
+  facebook            String  @default("#")
+  instagram           String  @default("#")
+  linkedin            String  @default("#")
+  tiktok              String  @default("#")
+  youtube             String  @default("#")
+  heroTitle           String  @default("We Build Digital Products That Last")
+  heroSubtitle        String  @default("Websites · Mobile apps · Custom software · SaaS platforms · AI automation.")
+  aboutStory          String  @default("Pandas Digital started with a simple belief: businesses in Sri Lanka deserve world-class digital products.")
+  aboutMission        String  @default("To help businesses grow through innovative technology, automation, and software development.")
+  aboutVision         String  @default("To become a leading technology company creating globally recognized digital products.")
+  contactHeading      String  @default("Let's Build Together")
+  contactSubheading   String  @default("Have a project in mind? We will get back to you within 24 hours.")
+  workHeading         String  @default("Projects We've Shipped")
+  workSubheading      String  @default("Real products, real clients, real results.")
+  servicesHeading     String  @default("What We Build")
+  servicesSubheading  String  @default("Full-stack digital solutions from design to deployment.")
+  productsHeading     String  @default("Software We Build & Sell")
+  productsSubheading  String  @default("Ready-made digital products built by Pandas Digital.")
+}
+
+model OurService {
+  id          Int     @id @default(autoincrement())
+  icon        String  @default("🌐")
+  title       String
+  description String
+  features    String
+  techStack   String?
+  order       Int     @default(0)
+  active      Boolean @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model OurProduct {
+  id          Int     @id @default(autoincrement())
+  icon        String  @default("📦")
+  title       String
+  description String
+  features    String
+  status      String  @default("Available")
+  order       Int     @default(0)
+  active      Boolean @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String
+  text      String
+  avatar    String   @default("?")
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String   @default("News")
+  published   Boolean  @default(false)
+  coverEmoji  String   @default("📝")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Invoice {
+  id           Int      @id @default(autoincrement())
+  invoiceNo    String   @unique
+  customerId   Int
+  customer     Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  type         String   @default("Invoice")
+  status       String   @default("Draft")
+  items        String
+  notes        String?
+  subtotal     Float    @default(0)
+  discount     Float    @default(0)
+  total        Float    @default(0)
+  dueDate      DateTime?
+  createdAt    DateTime @default(now())
+}
