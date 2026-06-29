@@ -3,6 +3,11 @@ generator client {
   output   = "../app/generated/prisma"
 }
 
+"scripts": {
+  "postinstall": "prisma generate",
+  "build": "next build"
+}
+
 datasource db {
   provider = "postgresql"
 }
