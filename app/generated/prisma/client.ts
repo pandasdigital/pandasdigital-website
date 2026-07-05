@@ -72,21 +72,6 @@ export type Reminder = Prisma.ReminderModel
  */
 export type Inquiry = Prisma.InquiryModel
 /**
- * Model SiteSettings
- * 
- */
-export type SiteSettings = Prisma.SiteSettingsModel
-/**
- * Model OurService
- * 
- */
-export type OurService = Prisma.OurServiceModel
-/**
- * Model OurProduct
- * 
- */
-export type OurProduct = Prisma.OurProductModel
-/**
  * Model Testimonial
  * 
  */
@@ -101,3 +86,18 @@ export type BlogPost = Prisma.BlogPostModel
  * 
  */
 export type Invoice = Prisma.InvoiceModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel
+/**
+ * Model OurService
+ * 
+ */
+export type OurService = Prisma.OurServiceModel
+/**
+ * Model OurProduct
+ * 
+ */
+export type OurProduct = Prisma.OurProductModel

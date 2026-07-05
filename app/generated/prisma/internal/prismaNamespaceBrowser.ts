@@ -57,12 +57,12 @@ export const ModelName = {
   Subscription: 'Subscription',
   Reminder: 'Reminder',
   Inquiry: 'Inquiry',
-  SiteSettings: 'SiteSettings',
-  OurService: 'OurService',
-  OurProduct: 'OurProduct',
   Testimonial: 'Testimonial',
   BlogPost: 'BlogPost',
-  Invoice: 'Invoice'
+  Invoice: 'Invoice',
+  SiteSettings: 'SiteSettings',
+  OurService: 'OurService',
+  OurProduct: 'OurProduct'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -170,6 +170,54 @@ export const InquiryScalarFieldEnum = {
 export type InquiryScalarFieldEnum = (typeof InquiryScalarFieldEnum)[keyof typeof InquiryScalarFieldEnum]
 
 
+export const TestimonialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  role: 'role',
+  text: 'text',
+  avatar: 'avatar',
+  active: 'active',
+  order: 'order',
+  createdAt: 'createdAt'
+} as const
+
+export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
+
+
+export const BlogPostScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  excerpt: 'excerpt',
+  content: 'content',
+  category: 'category',
+  published: 'published',
+  coverEmoji: 'coverEmoji',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
+
+
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNo: 'invoiceNo',
+  customerId: 'customerId',
+  type: 'type',
+  status: 'status',
+  items: 'items',
+  notes: 'notes',
+  subtotal: 'subtotal',
+  discount: 'discount',
+  total: 'total',
+  dueDate: 'dueDate',
+  createdAt: 'createdAt'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+
+
 export const SiteSettingsScalarFieldEnum = {
   id: 'id',
   companyName: 'companyName',
@@ -229,54 +277,6 @@ export const OurProductScalarFieldEnum = {
 } as const
 
 export type OurProductScalarFieldEnum = (typeof OurProductScalarFieldEnum)[keyof typeof OurProductScalarFieldEnum]
-
-
-export const TestimonialScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  role: 'role',
-  text: 'text',
-  avatar: 'avatar',
-  active: 'active',
-  order: 'order',
-  createdAt: 'createdAt'
-} as const
-
-export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
-
-
-export const BlogPostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  slug: 'slug',
-  excerpt: 'excerpt',
-  content: 'content',
-  category: 'category',
-  published: 'published',
-  coverEmoji: 'coverEmoji',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
-
-
-export const InvoiceScalarFieldEnum = {
-  id: 'id',
-  invoiceNo: 'invoiceNo',
-  customerId: 'customerId',
-  type: 'type',
-  status: 'status',
-  items: 'items',
-  notes: 'notes',
-  subtotal: 'subtotal',
-  discount: 'discount',
-  total: 'total',
-  dueDate: 'dueDate',
-  createdAt: 'createdAt'
-} as const
-
-export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
 export const SortOrder = {

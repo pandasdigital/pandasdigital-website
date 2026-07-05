@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import FaviconUploader from "@/components/admin/FaviconUploader";
 
 type Settings = {
   companyName: string;
@@ -186,6 +187,30 @@ export default function SettingsPage() {
           ))}
         </div>
       </div>
+
+      {/* Favicon Manager */}
+<div className="card mt-4">
+  <h2 className="font-medium text-gray-900 mb-1">Favicon</h2>
+  <p className="text-sm text-gray-500 mb-4">
+    The small icon shown in browser tabs. Upload a .ico, .png or .svg file. Recommended size: 32×32px or 64×64px.
+  </p>
+
+  <div className="flex items-start gap-4">
+    {/* Current favicon preview */}
+    <div style={{ width: 64, height: 64, background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <img
+        src="/favicon.ico"
+        alt="Current favicon"
+        style={{ width: 32, height: 32, objectFit: 'contain' }}
+        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+      />
+    </div>
+
+    <div className="flex-1">
+      <FaviconUploader />
+    </div>
+  </div>
+</div>
     </div>
   );
 }
